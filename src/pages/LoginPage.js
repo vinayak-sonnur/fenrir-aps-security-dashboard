@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
-import Button from '../components/Button';
 import useIsMobile from '../hooks/useIsMobile';
 
 const LoginPage = ({ onLoginSuccess }) => {

@@ -2,9 +2,8 @@ import React, { useContext, useState } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
-import OrgInfoBar from '../components/OrgInfoBar';
 import useIsMobile from '../hooks/useIsMobile';
-import { mockScanDetail, mockLogs, mockFindings, mockOrgInfo, mockUser } from '../data/mockData';
+import { mockScanDetail, mockLogs, mockFindings, mockUser } from '../data/mockData';
 
 const ScanDetail = ({ onBack, onNavigateToDashboard }) => {
     const { darkMode } = useContext(ThemeContext);
