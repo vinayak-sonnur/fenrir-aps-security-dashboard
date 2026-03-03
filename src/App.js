@@ -1,24 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { ThemeProvider } from './context/ThemeContext';
+import LoginPage from './pages/LoginPage';
+import Dashboard from './pages/Dashboard';
+import ScanDetail from './pages/ScanDetail';
+import './index.css';
+
+function AppContent() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [selectedScanId, setSelectedScanId] = useState(null);
+  const [currentPage, setCurrentPage] = useState('dashboard');
+
+  const handleLoginSuccess = () => {
+    setIsLoggedIn(true);
+    setCurrentPage('dashboard');
+  };
+
+  const handleScanClick = (scanId) => {
+    setSelectedScanId(scanId);
+    setCurrentPage('scanDetail');
+  };
+
+  const handleBackToDashboard = () => {
+    setCurrentPage('dashboard');
+    setSelectedScanId(null);
+  };
+
+  const handleNavigateToDashboard = () => {
+    setCurrentPage('dashboard');
+    setSelectedScanId(null);
+  };
+
+  if (!isLoggedIn) {
+    return <LoginPage onLoginSuccess={handleLoginSuccess} />;
+  }
+
+  if (currentPage === 'scanDetail' && selectedScanId) {
+    return (
+      <ScanDetail 
+        onBack={handleBackToDashboard}
+        onNavigateToDashboard={handleNavigateToDashboard}
+      />
+    );
+  }
+
+  return (
+    <Dashboard 
+      onScanClick={handleScanClick}
+      onNavigateToDashboard={handleNavigateToDashboard}
+    />
+  );
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 }
 
