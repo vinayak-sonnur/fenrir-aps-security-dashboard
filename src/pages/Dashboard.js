@@ -26,14 +26,6 @@ const Dashboard = ({ onScanClick }) => {
         alert('New Scan clicked!');
     };
 
-    const handleExportReport = () => {
-        alert('Export Report clicked!');
-    };
-
-    const handleStopScan = () => {
-        alert('Stop Scan clicked!');
-    };
-
     return (
         <div
             style={{
